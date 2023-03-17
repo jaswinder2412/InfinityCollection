@@ -10,6 +10,7 @@ const PORT = process.env.PORT
 const user = require('./routes/userroutes');
 const product = require('./routes/productrouter');
 const category = require('./routes/categoriesRouter');
+const subCategory = require('./routes/subCategoriesRouter');
 
  app.use(cors())
 
@@ -17,6 +18,7 @@ const category = require('./routes/categoriesRouter');
 app.use('/user',user); 
 app.use('/product',product); 
 app.use('/category',category); 
+app.use('/subCategory',subCategory); 
  
 
 app.get('/',(req,res)=>{ 

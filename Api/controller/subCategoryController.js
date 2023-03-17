@@ -9,14 +9,13 @@ class subCategoryController{
     }
 
 
-    async createCategory(args){ 
+    async createSubCategory(args){ 
 
         try{
-            let catName = args.catName;
-            let catPhoto = args.catPhoto; 
-            let collectionLink = args.collectionLink; 
-            let sqlQuery = 'INSERT INTO `categories`( `catName`, `catPhoto`, `collectionLink`) VALUES (?,?,?)';
-           let categoryStatus = await this.db.mainQuery(sqlQuery,[catName,catPhoto, collectionLink]);
+            let sCatName = args.sCatName;
+            let catId = args.catId;  
+            let sqlQuery = 'INSERT INTO `subcategories`( `sCatName`, `catId`) VALUES (?,?)';
+           let categoryStatus = await this.db.mainQuery(sqlQuery,[sCatName,catId]);
        
          return categoryStatus;
               
@@ -29,12 +28,12 @@ class subCategoryController{
     }
 
     
-    async checkCategory(arg){ 
+    async checkSubCategory(arg){ 
 
         try{ 
-            let catName = arg; 
-            let sqlQuery = 'SELECT * from `categories` WHERE catName=?';
-           return await this.db.mainQuery(sqlQuery,[catName]);
+            let sCatName = arg; 
+            let sqlQuery = 'SELECT * from `subcategories` WHERE sCatName=?';
+           return await this.db.mainQuery(sqlQuery,[sCatName]);
 
         }
         catch(error){
@@ -44,10 +43,10 @@ class subCategoryController{
 
     }
 
-    async listCategory(){ 
+    async listSubCategory(){ 
 
         try{ 
-            let sqlQuery = 'SELECT * from `categories` ';
+            let sqlQuery = 'SELECT * from `subcategories` ';
            return await this.db.mainQuery(sqlQuery,[]);
 
         }

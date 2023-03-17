@@ -1,73 +1,67 @@
 const DB = require('../model/Db');
-const fs = require('fs');
-const path = require('path');
-const os = require('os');
-
-const EventEmitter = require('events');
-
-const eventEmitter = new EventEmitter();
+const fs = require('fs'); 
 var logger = require('logger').createLogger('development.log');
-
 
 class productController{
 
     constructor(){
-        this.db = DB;
-        eventEmitter.on('start', () => {
-            console.log('Hello Jasman');
-          });
-          console.log("sd");
+        this.db = DB; 
     }
 
 
     async createProduct(args){ 
 
+        try{
+            let productName = args.productName;   
+            let productPhoto = args.productPhoto;   
+            let productGallery = args.productGallery;   
+            let prductDescription = args.prductDescription;   
+            let discountedPrice = args.discountedPrice;   
+            let price = args.price;   
+            let limitedEdition = args.limitedEdition;   
+            let trendings = args.trendings;   
+            let subCatId = args.subCatId;   
+            let catId = args.catId;    
+            let sqlQuery = 'INSERT INTO `prducts`(`productName`, `productPhoto`, `productGallery`, `prductDescription`, `discountedPrice`, `price`, `limitedEdition`, `trendings`, `subCatId`, `catId`) VALUES (?,?,?,?,?,?,?,?,?,?)';
+           let productStatus = await this.db.mainQuery(sqlQuery,[productName,productPhoto,productGallery,prductDescription,discountedPrice,price,limitedEdition,trendings,subCatId,catId]);
        
+         return productStatus;
+              
+        }
+        catch(error){
+            console.log(error);
+            logger.info('Error', error);
+        } 
 
-          eventEmitter.emit('start');
+    }
 
+    
+    // async checkSubCategory(arg){ 
+
+    //     try{ 
+    //         let sCatName = arg; 
+    //         let sqlQuery = 'SELECT * from `subcategories` WHERE sCatName=?';
+    //        return await this.db.mainQuery(sqlQuery,[sCatName]);
+
+    //     }
+    //     catch(error){
+    //         console.log(error);
+    //         logger.info('Error', error);
+    //     } 
+
+    // }
+
+    async listProduct(){ 
 
         try{ 
-            var addedByUserId = args.addedByUserId;
-            var productTitle = args.productTitle;
-            var companyName = args.companyName;
-            var description = args.description;
-            var photo = args.photo;
-            var qty = args.qty;
-            var costPrice = args.costPrice;
-            var sellingPrice = args.sellingPrice;
-            var MrPrice = args.MrPrice; 
-            var usedLike = args.usedLike; 
-            var modelName = args.modelName; 
-            var specifications = args.specifications; 
-
-
-            var sqlQuery = 'INSERT INTO `products`( `addedByUserId`, `productTitle`, `companyName`, `description`, `photo`, `qty`, `costPrice`, `sellingPrice`, `MrPrice`, `usedLike`, `modelName`, `specifications`) VALUES (?,?,?,?,?,?,?,?,?,?,?,?)';
- 
-            var fileroute = '/../publicbills/'+productTitle+'.json';
-
-            var stream = fs.createWriteStream(path.join(__dirname, fileroute));
-            stream.once('open', function(fd) {
-              stream.write("My first row\n");
-              stream.write("My second row\n");
-              stream.end();
-            });
-
-            
-            console.log(os.platform()
-            );
-
-           return await this.db.mainQuery(sqlQuery,[addedByUserId,productTitle,companyName,description,photo,qty,costPrice,sellingPrice,MrPrice,usedLike,modelName,specifications]);
-
-
-
+            let sqlQuery = 'SELECT * from `prducts` ';
+           return await this.db.mainQuery(sqlQuery,[]);
 
         }
         catch(error){
-            
+            console.log(error);
             logger.info('Error', error);
-
-        }
+        } 
 
     }
 
@@ -75,4 +69,4 @@ class productController{
 
 }
 
-module.exports = new productController();
+module.exports = new productController(); 
