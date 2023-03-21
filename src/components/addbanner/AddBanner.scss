@@ -1,0 +1,18 @@
+.saleAdvertise{
+    margin-bottom: 4.5rem;
+    margin-top: 2rem;
+}
+
+.customAdvertise{
+    padding: 16px;
+    background-color: #003F5E;
+    color: white;
+
+    .col:nth-child(1){
+        padding: 7.5%;
+
+        h2{
+            font-size: 3rem;
+        }
+    }
+}

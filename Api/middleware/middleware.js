@@ -30,9 +30,9 @@ exports.formidableMiddleware = (req, res, next) => {
             fs.writeFile(newPath, rawData, function (err) {
                 if (err) console.log(err) 
                 
-                console.log("Successfully uploaded" )
+                console.log("Successfully uploaded",patsh )
             })
-        }); 
+        });  
         req.body =  {...req.body, ...obj};
   
          next();

@@ -1,0 +1,40 @@
+
+$myFont: Helvetica, sans-serif;
+$myBackground: #FFF4F0;
+$myFontSize: 15px;
+$myWidth: 100%;
+$myFloat: left;
+
+/* make the customizations */
+$theme-colors: (
+    "info": tomato,
+    "danger": teal
+);
+
+/* import bootstrap to set changes */
+@import "~bootstrap/scss/bootstrap";
+
+.topheader{
+    width :$myWidth;
+    float:left;
+    background-color: $myBackground;
+    text-align:center;
+    padding-top: 7px;
+    
+    .advertise{
+        width: 90%;
+        float: $myFloat;
+        margin-bottom: -8px;
+        p{
+        
+            font-size: $myFontSize;
+        }
+    }
+    .account{
+        width: 10%;
+        float: $myFloat;
+        span{
+            font-size: 14px;
+        }
+    }
+}

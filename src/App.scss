@@ -1,0 +1,15 @@
+$bgcolor: white;
+$textcolor: black;
+$fontsize: 18px;
+
+/* Use the variables */
+.App {
+  background-color: $bgcolor;
+  color: $textcolor;
+  font-size: $fontsize;
+}
+
+.btn-primary{
+  background-color: $bgcolor;
+  color: $textcolor;
+}
